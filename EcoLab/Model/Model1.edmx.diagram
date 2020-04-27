@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="89f30e0d3e9944eaba79ca5e48ddc1d1" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="EcoLabModel.Workman" Width="1.5" PointX="3.25" PointY="5.25" />
+        <EntityTypeShape EntityType="EcoLabModel.Brand" Width="1.5" PointX="5.375" PointY="1.5" />
+        <EntityTypeShape EntityType="EcoLabModel.Category" Width="1.5" PointX="5.375" PointY="4.625" />
+        <EntityTypeShape EntityType="EcoLabModel.Product" Width="1.5" PointX="7.625" PointY="0.5" />
+        <EntityTypeShape EntityType="EcoLabModel.QuantityUnit" Width="1.5" PointX="5.375" PointY="7" />
+        <EntityTypeShape EntityType="EcoLabModel.SalesOfWorkmans" Width="1.5" PointX="14.25" PointY="3.875" />
+        <EntityTypeShape EntityType="EcoLabModel.Sex" Width="1.5" PointX="0.5" PointY="9.625" />
+        <EntityTypeShape EntityType="EcoLabModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="9.625" />
+        <AssociationConnector Association="EcoLabModel.FK_Product_Brand" />
+        <AssociationConnector Association="EcoLabModel.FK_Product_Category" />
+        <AssociationConnector Association="EcoLabModel.FK_Product_QuantityUnit" />
+        <AssociationConnector Association="EcoLabModel.FK_SalesOfWorkmans_Product" />
+        <AssociationConnector Association="EcoLabModel.FK_SalesOfWorkmans_Workman" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_Sex" />
+        <EntityTypeShape EntityType="EcoLabModel.MaritalStatus" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="EcoLabModel.Position" Width="1.5" PointX="0.75" PointY="4.75" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_MaritalStatus" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_Position" />
+        <EntityTypeShape EntityType="EcoLabModel.BirthDay" Width="1.5" PointX="0.875" PointY="7.375" />
+        <EntityTypeShape EntityType="EcoLabModel.BirthMonth" Width="1.5" PointX="0.875" PointY="15.5" />
+        <EntityTypeShape EntityType="EcoLabModel.BirthYear" Width="1.5" PointX="0.875" PointY="2.25" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_BirthDay" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_BirthMonth" />
+        <AssociationConnector Association="EcoLabModel.FK_Workman_BirthYear" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

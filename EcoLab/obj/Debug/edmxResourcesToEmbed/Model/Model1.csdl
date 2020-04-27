@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EcoLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EcoLabEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Workman" EntityType="EcoLabModel.Workman" />
+    <EntitySet Name="Brand" EntityType="EcoLabModel.Brand" />
+    <EntitySet Name="Category" EntityType="EcoLabModel.Category" />
+    <EntitySet Name="Product" EntityType="EcoLabModel.Product" />
+    <EntitySet Name="QuantityUnit" EntityType="EcoLabModel.QuantityUnit" />
+    <EntitySet Name="SalesOfWorkmans" EntityType="EcoLabModel.SalesOfWorkmans" />
+    <EntitySet Name="Sex" EntityType="EcoLabModel.Sex" />
+    <EntitySet Name="sysdiagrams" EntityType="EcoLabModel.sysdiagrams" />
+    <AssociationSet Name="FK_Product_Brand" Association="EcoLabModel.FK_Product_Brand">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="EcoLabModel.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_QuantityUnit" Association="EcoLabModel.FK_Product_QuantityUnit">
+      <End Role="QuantityUnit" EntitySet="QuantityUnit" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOfWorkmans_Product" Association="EcoLabModel.FK_SalesOfWorkmans_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SalesOfWorkmans" EntitySet="SalesOfWorkmans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOfWorkmans_Workman" Association="EcoLabModel.FK_SalesOfWorkmans_Workman">
+      <End Role="Workman" EntitySet="Workman" />
+      <End Role="SalesOfWorkmans" EntitySet="SalesOfWorkmans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_Sex" Association="EcoLabModel.FK_Workman_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <EntitySet Name="MaritalStatus" EntityType="EcoLabModel.MaritalStatus" />
+    <EntitySet Name="Position" EntityType="EcoLabModel.Position" />
+    <AssociationSet Name="FK_Workman_MaritalStatus" Association="EcoLabModel.FK_Workman_MaritalStatus">
+      <End Role="MaritalStatus" EntitySet="MaritalStatus" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_Position" Association="EcoLabModel.FK_Workman_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <EntitySet Name="BirthDay" EntityType="EcoLabModel.BirthDay" />
+    <EntitySet Name="BirthMonth" EntityType="EcoLabModel.BirthMonth" />
+    <EntitySet Name="BirthYear" EntityType="EcoLabModel.BirthYear" />
+    <AssociationSet Name="FK_Workman_BirthDay" Association="EcoLabModel.FK_Workman_BirthDay">
+      <End Role="BirthDay" EntitySet="BirthDay" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_BirthMonth" Association="EcoLabModel.FK_Workman_BirthMonth">
+      <End Role="BirthMonth" EntitySet="BirthMonth" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_BirthYear" Association="EcoLabModel.FK_Workman_BirthYear">
+      <End Role="BirthYear" EntitySet="BirthYear" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Workman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SexId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SalesOfWorkmans" Relationship="EcoLabModel.FK_SalesOfWorkmans_Workman" FromRole="Workman" ToRole="SalesOfWorkmans" />
+    <NavigationProperty Name="Sex1" Relationship="EcoLabModel.FK_Workman_Sex" FromRole="Workman" ToRole="Sex" />
+    <Property Name="PositionId" Type="Int32" />
+    <Property Name="MaritalStatusId" Type="Int32" />
+    <NavigationProperty Name="MaritalStatus" Relationship="EcoLabModel.FK_Workman_MaritalStatus" FromRole="Workman" ToRole="MaritalStatus" />
+    <NavigationProperty Name="Position" Relationship="EcoLabModel.FK_Workman_Position" FromRole="Workman" ToRole="Position" />
+    <Property Name="BirthYearId" Type="Int32" />
+    <Property Name="BirthDayId" Type="Int32" />
+    <Property Name="BirthMonthId" Type="Int32" />
+    <NavigationProperty Name="BirthDay" Relationship="EcoLabModel.FK_Workman_BirthDay" FromRole="Workman" ToRole="BirthDay" />
+    <NavigationProperty Name="BirthMonth" Relationship="EcoLabModel.FK_Workman_BirthMonth" FromRole="Workman" ToRole="BirthMonth" />
+    <NavigationProperty Name="BirthYear" Relationship="EcoLabModel.FK_Workman_BirthYear" FromRole="Workman" ToRole="BirthYear" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="EcoLabModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="EcoLabModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Cena" Type="Int32" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <Property Name="QuantityId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Brand" Relationship="EcoLabModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+    <NavigationProperty Name="Category" Relationship="EcoLabModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="QuantityUnit" Relationship="EcoLabModel.FK_Product_QuantityUnit" FromRole="Product" ToRole="QuantityUnit" />
+    <NavigationProperty Name="SalesOfWorkmans" Relationship="EcoLabModel.FK_SalesOfWorkmans_Product" FromRole="Product" ToRole="SalesOfWorkmans" />
+  </EntityType>
+  <EntityType Name="QuantityUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="EcoLabModel.FK_Product_QuantityUnit" FromRole="QuantityUnit" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="SalesOfWorkmans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkmanId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="EcoLabModel.FK_SalesOfWorkmans_Product" FromRole="SalesOfWorkmans" ToRole="Product" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_SalesOfWorkmans_Workman" FromRole="SalesOfWorkmans" ToRole="Workman" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_Sex" FromRole="Sex" ToRole="Workman" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Product_Brand">
+    <End Type="EcoLabModel.Brand" Role="Brand" Multiplicity="1" />
+    <End Type="EcoLabModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Type="EcoLabModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="EcoLabModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_QuantityUnit">
+    <End Type="EcoLabModel.QuantityUnit" Role="QuantityUnit" Multiplicity="1" />
+    <End Type="EcoLabModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuantityUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="QuantityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOfWorkmans_Product">
+    <End Type="EcoLabModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="EcoLabModel.SalesOfWorkmans" Role="SalesOfWorkmans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOfWorkmans">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOfWorkmans_Workman">
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="1" />
+    <End Type="EcoLabModel.SalesOfWorkmans" Role="SalesOfWorkmans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workman">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOfWorkmans">
+        <PropertyRef Name="WorkmanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_Sex">
+    <End Type="EcoLabModel.Sex" Role="Sex" Multiplicity="1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="SexId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MaritalStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_MaritalStatus" FromRole="MaritalStatus" ToRole="Workman" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_Position" FromRole="Position" ToRole="Workman" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Workman_MaritalStatus">
+    <End Type="EcoLabModel.MaritalStatus" Role="MaritalStatus" Multiplicity="0..1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaritalStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="MaritalStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_Position">
+    <End Type="EcoLabModel.Position" Role="Position" Multiplicity="0..1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BirthDay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_BirthDay" FromRole="BirthDay" ToRole="Workman" />
+  </EntityType>
+  <EntityType Name="BirthMonth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_BirthMonth" FromRole="BirthMonth" ToRole="Workman" />
+  </EntityType>
+  <EntityType Name="BirthYear">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Workman" Relationship="EcoLabModel.FK_Workman_BirthYear" FromRole="BirthYear" ToRole="Workman" />
+  </EntityType>
+  <Association Name="FK_Workman_BirthDay">
+    <End Type="EcoLabModel.BirthDay" Role="BirthDay" Multiplicity="0..1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthDay">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthDayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_BirthMonth">
+    <End Type="EcoLabModel.BirthMonth" Role="BirthMonth" Multiplicity="0..1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthMonth">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthMonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_BirthYear">
+    <End Type="EcoLabModel.BirthYear" Role="BirthYear" Multiplicity="0..1" />
+    <End Type="EcoLabModel.Workman" Role="Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

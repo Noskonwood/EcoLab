@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище EcoLabModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BirthDay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BirthMonth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="BirthYear">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="1024" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MaritalStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Cena" Type="int" />
+    <Property Name="BrandId" Type="int" Nullable="false" />
+    <Property Name="QuantityId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="Features" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="QuantityUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Abbreviation" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesOfWorkmans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkmanId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Workman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SexId" Type="int" Nullable="false" />
+    <Property Name="PositionId" Type="int" />
+    <Property Name="MaritalStatusId" Type="int" />
+    <Property Name="BirthYearId" Type="int" />
+    <Property Name="BirthDayId" Type="int" />
+    <Property Name="BirthMonthId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Product_Brand">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_QuantityUnit">
+    <End Role="QuantityUnit" Type="Self.QuantityUnit" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuantityUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="QuantityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOfWorkmans_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SalesOfWorkmans" Type="Self.SalesOfWorkmans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOfWorkmans">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOfWorkmans_Workman">
+    <End Role="Workman" Type="Self.Workman" Multiplicity="1" />
+    <End Role="SalesOfWorkmans" Type="Self.SalesOfWorkmans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workman">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesOfWorkmans">
+        <PropertyRef Name="WorkmanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_BirthDay">
+    <End Role="BirthDay" Type="Self.BirthDay" Multiplicity="0..1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthDay">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthDayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_BirthMonth">
+    <End Role="BirthMonth" Type="Self.BirthMonth" Multiplicity="0..1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthMonth">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthMonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_BirthYear">
+    <End Role="BirthYear" Type="Self.BirthYear" Multiplicity="0..1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthYear">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="BirthYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_MaritalStatus">
+    <End Role="MaritalStatus" Type="Self.MaritalStatus" Multiplicity="0..1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaritalStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="MaritalStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workman_Sex">
+    <End Role="Sex" Type="Self.Sex" Multiplicity="1" />
+    <End Role="Workman" Type="Self.Workman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workman">
+        <PropertyRef Name="SexId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище EcoLabModelContainer">
+    <EntitySet Name="BirthDay" EntityType="Self.BirthDay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BirthMonth" EntityType="Self.BirthMonth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BirthYear" EntityType="Self.BirthYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaritalStatus" EntityType="Self.MaritalStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuantityUnit" EntityType="Self.QuantityUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesOfWorkmans" EntityType="Self.SalesOfWorkmans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workman" EntityType="Self.Workman" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_QuantityUnit" Association="Self.FK_Product_QuantityUnit">
+      <End Role="QuantityUnit" EntitySet="QuantityUnit" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOfWorkmans_Product" Association="Self.FK_SalesOfWorkmans_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SalesOfWorkmans" EntitySet="SalesOfWorkmans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOfWorkmans_Workman" Association="Self.FK_SalesOfWorkmans_Workman">
+      <End Role="Workman" EntitySet="Workman" />
+      <End Role="SalesOfWorkmans" EntitySet="SalesOfWorkmans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_BirthDay" Association="Self.FK_Workman_BirthDay">
+      <End Role="BirthDay" EntitySet="BirthDay" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_BirthMonth" Association="Self.FK_Workman_BirthMonth">
+      <End Role="BirthMonth" EntitySet="BirthMonth" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_BirthYear" Association="Self.FK_Workman_BirthYear">
+      <End Role="BirthYear" EntitySet="BirthYear" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_MaritalStatus" Association="Self.FK_Workman_MaritalStatus">
+      <End Role="MaritalStatus" EntitySet="MaritalStatus" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_Position" Association="Self.FK_Workman_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workman_Sex" Association="Self.FK_Workman_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="Workman" EntitySet="Workman" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

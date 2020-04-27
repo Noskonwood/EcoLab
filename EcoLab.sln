@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLab", "EcoLab\EcoLab.csproj", "{E0847E72-33DA-468E-AB48-C1D81F04006B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firma", "..\Firma\Firma\Firma.csproj", "{2CD7A6BD-3C3D-4CF0-857B-6891E4D335DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0847E72-33DA-468E-AB48-C1D81F04006B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0847E72-33DA-468E-AB48-C1D81F04006B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0847E72-33DA-468E-AB48-C1D81F04006B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0847E72-33DA-468E-AB48-C1D81F04006B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD7A6BD-3C3D-4CF0-857B-6891E4D335DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD7A6BD-3C3D-4CF0-857B-6891E4D335DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD7A6BD-3C3D-4CF0-857B-6891E4D335DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD7A6BD-3C3D-4CF0-857B-6891E4D335DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

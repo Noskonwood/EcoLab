@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="EcoLab.Views.Sorting"              
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"              
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"              
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"              
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"               
+             mc:Ignorable="d"               
+             d:DesignHeight="340" d:DesignWidth="400">
+    <Grid>
+        <StackPanel Margin="8" Background="Azure"  Height="175" Width="380" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="33"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Utarg w wybranym okresie dla wybranego towaru" Margin="3" HorizontalContentAlignment="Center"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Od" Margin="3" HorizontalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="1" Margin="3" SelectedDate="{Binding DataOd}"/>
+                    <Label Grid.Column="2" Content="Do" Margin="3" HorizontalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="3" Margin="3" SelectedDate="{Binding DataDo}"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Wybierz towar:" Margin="3" HorizontalContentAlignment="Right" />
+                    <ComboBox  Grid.Column="1"  Margin="3" ItemsSource="{Binding TowaryComboBoxItems}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Path=IdTowaru,Mode=TwoWay}"/>
+                </Grid>
+                <Button Grid.Row="3" Margin="3" Content="Oblicz" Command="{Binding ObliczCommand}"/>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Utarg wynosi:" Margin="3" HorizontalContentAlignment="Right" />
+                    <Label Grid.Column="1"  Margin="3" HorizontalContentAlignment="Left" Content="{Binding Utarg}"  />
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
